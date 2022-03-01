@@ -19,7 +19,6 @@ export default function Dropdown(props) {
   const [selectedItems, setSelectedItems] = useState({});
   const [dropDownOpen, toggleDropdownOpen] = useState(false);
 
-
   //listens for escape key press
   const escapeListener = useCallback((event) => {
     if (event.key === "Escape") {
@@ -27,7 +26,7 @@ export default function Dropdown(props) {
     }
   }, []);
 
-  //listesn for external click 
+  //listesn for external click
   const clickListener = useCallback(
     (event) => {
       if (!ref.current.contains(event.target)) {
@@ -47,7 +46,7 @@ export default function Dropdown(props) {
     }
   }, [selectedItems]);
 
-  //allows the component to know if user clicked outside it 
+  //allows the component to know if user clicked outside it
   useEffect(() => {
     document.addEventListener("click", clickListener);
     document.addEventListener("keyup", escapeListener);
@@ -122,7 +121,8 @@ const DropdownBar = (props) => {
         {labelString}
       </div>
 
-      {props.dropDownOpen && props.selectMultiple && 
+      {props.dropDownOpen &&
+        props.selectMultiple &&
         (canSelectAll ? (
           <img
             src={plus}
@@ -137,17 +137,15 @@ const DropdownBar = (props) => {
           />
         ))}
 
-      <div>
-        <img
-          onClick={() => {
-            props.toggleDropdownOpen(!props.dropDownOpen);
-          }}
-          src={arrowDown}
-          className={
-            props.dropDownOpen ? "dropdown-icon-open" : "dropdown-icon-close"
-          }
-        />
-      </div>
+      <img
+        onClick={() => {
+          props.toggleDropdownOpen(!props.dropDownOpen);
+        }}
+        src={arrowDown}
+        className={
+          props.dropDownOpen ? "dropdown-icon-open" : "dropdown-icon-close"
+        }
+      />
     </div>
   );
 };
